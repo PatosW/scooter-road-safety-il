@@ -54,6 +54,7 @@ let trainCat    = "all";
 let trainList   = [];
 let trainIdx    = 0;
 let trainAnswered = {}; // { questionId: correct (bool) }
+let trainAdvanceTimer = null;
 
 let testList    = [];
 let testIdx     = 0;
@@ -243,13 +244,14 @@ function handleTrainAnswer(chosen) {
   expText.textContent = q.explanation;
   expBox.hidden = false;
 
-  // Auto-advance after 1.5s if correct
+  // Auto-advance after 3s if correct
   if (isCorrect && trainIdx < trainList.length - 1) {
-    setTimeout(() => advanceTrain(1), 1500);
+    trainAdvanceTimer = setTimeout(() => advanceTrain(1), 3000);
   }
 }
 
 function advanceTrain(dir) {
+  if (trainAdvanceTimer) { clearTimeout(trainAdvanceTimer); trainAdvanceTimer = null; }
   trainIdx = Math.max(0, Math.min(trainList.length - 1, trainIdx + dir));
   renderTrainQuestion();
   renderCategoryProgress();
