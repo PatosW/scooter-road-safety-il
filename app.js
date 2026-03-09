@@ -3,81 +3,46 @@
    Vanilla JS, no framework
 ════════════════════════════════════ */
 
-// ─── TRANSLATIONS ─────────────────────────────────────────────────────────────
-const T = {
-  he: {
-    appTitle: "בטיחות בדרכים",
-    appSubtitle: "קורקינט חשמלי",
-    homeTagline: "למד את חוקי הדרך לפני שאתה יוצא לרחוב",
-    statTests: "בחינות", statBest: "שיא", statLast: "אחרון",
-    btnTrain: "מצב אימון", btnTrainSub: "עיון חופשי בשאלות",
-    btnTest:  "מצב בחינה", btnTestSub: "20 שאלות, 30 שניות כל אחת",
-    progressTitle: "התקדמות באימון",
-    trainTitle: "מצב אימון",
-    catAll: "כל הקטגוריות",
-    prevBtn: "הקודם", nextBtn: "הבא",
-    testTitle: "בחינה",
-    questionOf: (n, t) => `שאלה ${n} מתוך ${t}`,
-    resultsTitle: "תוצאות הבחינה",
-    pass: "עבר ✓", fail: "נכשל ✗",
-    scoreSummary: (c, t) => `ענית נכון על ${c} מתוך ${t} שאלות`,
-    wrongTitle: "שאלות שטעית",
-    correctAnswer: "תשובה נכונה:",
-    btnRetry: "נסה שוב",
-    btnToTrain: "חזור לאימון",
-    modalText: "לצאת מהבחינה? הניקוד לא יישמר.",
-    modalContinue: "המשך בחינה",
-    modalQuit: "יציאה",
-    progressLbl: (done, total) => `${done}/${total}`,
-    answered: "ענית על",
-    langLabel: "FR",
-    timedOut: "הזמן נגמר",
-    catLabels: {
-      scooter_laws:   "חוקי קורקינט חשמלי",
-      traffic_code:   "קוד תעבורה כללי",
-      road_awareness: "מודעות דרך וסכנות",
-      herzliya_urban: "עירוני והרצליה"
-    }
-  },
-  fr: {
-    appTitle: "Sécurité routière",
-    appSubtitle: "Trottinette électrique",
-    homeTagline: "Apprends le code de la route avant de prendre la rue",
-    statTests: "Tests", statBest: "Meilleur", statLast: "Dernier",
-    btnTrain: "Mode entraînement", btnTrainSub: "Parcourir toutes les questions",
-    btnTest:  "Mode examen", btnTestSub: "20 questions, 30 sec par question",
-    progressTitle: "Progression",
-    trainTitle: "Entraînement",
-    catAll: "Toutes les catégories",
-    prevBtn: "Précédent", nextBtn: "Suivant",
-    testTitle: "Examen",
-    questionOf: (n, t) => `Question ${n} sur ${t}`,
-    resultsTitle: "Résultats",
-    pass: "Reçu ✓", fail: "Échoué ✗",
-    scoreSummary: (c, t) => `${c} bonnes réponses sur ${t}`,
-    wrongTitle: "Questions ratées",
-    correctAnswer: "Bonne réponse :",
-    btnRetry: "Réessayer",
-    btnToTrain: "Retour à l'entraînement",
-    modalText: "Quitter l'examen ? Le score ne sera pas enregistré.",
-    modalContinue: "Continuer",
-    modalQuit: "Quitter",
-    progressLbl: (done, total) => `${done}/${total}`,
-    answered: "Répondu",
-    langLabel: "עברית",
-    timedOut: "Temps écoulé",
-    catLabels: {
-      scooter_laws:   "Lois trottinette",
-      traffic_code:   "Code de la route",
-      road_awareness: "Conscience routière",
-      herzliya_urban: "Urbain – Herzliya"
-    }
+// ─── STRINGS (Hebrew only) ────────────────────────────────────────────────────
+const HE = {
+  appTitle:      "בטיחות בדרכים",
+  appSubtitle:   "קורקינט חשמלי",
+  homeTagline:   "למד את חוקי הדרך לפני שאתה יוצא לרחוב",
+  statTests:     "בחינות",
+  statBest:      "שיא",
+  statLast:      "אחרון",
+  btnTrain:      "מצב אימון",
+  btnTrainSub:   "עיון חופשי בשאלות",
+  btnTest:       "מצב בחינה",
+  btnTestSub:    "20 שאלות, 30 שניות כל אחת",
+  progressTitle: "התקדמות באימון",
+  trainTitle:    "מצב אימון",
+  catAll:        "כל הקטגוריות",
+  prevBtn:       "הקודם",
+  nextBtn:       "הבא",
+  questionOf:    (n, total) => `שאלה ${n} מתוך ${total}`,
+  resultsTitle:  "תוצאות הבחינה",
+  pass:          "עבר ✓",
+  fail:          "נכשל ✗",
+  scoreSummary:  (c, total) => `ענית נכון על ${c} מתוך ${total} שאלות`,
+  wrongTitle:    "שאלות שטעית",
+  correctAnswer: "תשובה נכונה:",
+  btnRetry:      "נסה שוב",
+  btnToTrain:    "חזור לאימון",
+  modalText:     "לצאת מהבחינה? הניקוד לא יישמר.",
+  modalContinue: "המשך בחינה",
+  modalQuit:     "יציאה",
+  progressLbl:   (done, total) => `${done}/${total}`,
+  catLabels: {
+    scooter_laws:   "חוקי קורקינט חשמלי",
+    traffic_code:   "קוד תעבורה כללי",
+    road_awareness: "מודעות דרך וסכנות",
+    herzliya_urban: "עירוני והרצליה"
   }
 };
 
 // ─── CONSTANTS ────────────────────────────────────────────────────────────────
-const LETTERS_HE = ["א", "ב", "ג", "ד"];
-const LETTERS_FR = ["A", "B", "C", "D"];
+const LETTERS = ["א", "ב", "ג", "ד"];
 const TEST_COUNT  = 20;
 const TIMER_SECS  = 30;
 const PASS_PCT    = 80;
@@ -85,7 +50,6 @@ const CIRCUMFERENCE_TIMER  = 2 * Math.PI * 18; // 113.1
 const CIRCUMFERENCE_SCORE  = 2 * Math.PI * 50; // 314.16
 
 // ─── STATE ────────────────────────────────────────────────────────────────────
-let lang        = "he";
 let trainCat    = "all";
 let trainList   = [];
 let trainIdx    = 0;
@@ -150,54 +114,10 @@ function showScreen(name) {
   window.scrollTo(0, 0);
 }
 
-// ─── LANGUAGE ─────────────────────────────────────────────────────────────────
-function t(key, ...args) {
-  const val = T[lang][key];
+// ─── STATIC STRINGS HELPER ────────────────────────────────────────────────────
+function s(key, ...args) {
+  const val = HE[key];
   return typeof val === "function" ? val(...args) : (val ?? key);
-}
-function getLetters() {
-  return lang === "he" ? LETTERS_HE : LETTERS_FR;
-}
-
-function applyLang() {
-  document.documentElement.lang = lang;
-  document.documentElement.dir  = lang === "he" ? "rtl" : "ltr";
-
-  // Header
-  $("app-title").textContent    = t("appTitle");
-  $("app-subtitle").textContent = t("appSubtitle");
-  $("lang-label").textContent   = t("langLabel");
-
-  // Home
-  $("home-tagline").textContent     = t("homeTagline");
-  $("stat-tests-label").textContent = t("statTests");
-  $("stat-best-label").textContent  = t("statBest");
-  $("stat-last-label").textContent  = t("statLast");
-  $("btn-train-text").textContent   = t("btnTrain");
-  $("btn-train-sub").textContent    = t("btnTrainSub");
-  $("btn-test-text").textContent    = t("btnTest");
-  $("btn-test-sub").textContent     = t("btnTestSub");
-  $("progress-title").textContent   = t("progressTitle");
-
-  // Train
-  $("train-title").textContent      = t("trainTitle");
-  $("train-prev-text").textContent  = t("prevBtn");
-  $("train-next-text").textContent  = t("nextBtn");
-
-  // Results
-  $("results-title").textContent    = t("resultsTitle");
-  $("btn-retry-text").textContent   = t("btnRetry");
-  $("btn-to-train-text").textContent= t("btnToTrain");
-  $("wrong-title").textContent      = t("wrongTitle");
-
-  // Modal
-  $("modal-text").textContent       = t("modalText");
-  $("modal-cancel").textContent     = t("modalContinue");
-  $("modal-confirm").textContent    = t("modalQuit");
-
-  refreshCatSelector();
-  renderCategoryProgress();
-  updateHomeStats();
 }
 
 // ─── HOME ──────────────────────────────────────────────────────────────────────
@@ -222,7 +142,7 @@ function renderCategoryProgress() {
     row.className = "cat-row";
     row.innerHTML = `
       <div class="cat-row-header">
-        <span class="cat-name">${t("catLabels")[catKey]}</span>
+        <span class="cat-name">${s("catLabels")[catKey]}</span>
         <span class="cat-pct">${pct}%</span>
       </div>
       <div class="cat-bar">
@@ -236,11 +156,11 @@ function renderCategoryProgress() {
 function refreshCatSelector() {
   const sel = $("cat-selector");
   const prev = sel.value;
-  sel.innerHTML = `<option value="all">${t("catAll")}</option>`;
+  sel.innerHTML = `<option value="all">${s("catAll")}</option>`;
   Object.keys(CATEGORIES).forEach(k => {
     const opt = document.createElement("option");
     opt.value = k;
-    opt.textContent = t("catLabels")[k];
+    opt.textContent = s("catLabels")[k];
     sel.appendChild(opt);
   });
   sel.value = prev || "all";
@@ -266,9 +186,8 @@ function renderTrainQuestion() {
   if (!q) return;
 
   const answered = getAnswered();
-  const letters  = getLetters();
 
-  $("train-q-number").textContent = t("catLabels")[q.category];
+  $("train-q-number").textContent = s("catLabels")[q.category];
 
   $("train-q-text").textContent = q.question;
   $("train-q-text").className   = "question-text fade-in";
@@ -278,7 +197,7 @@ function renderTrainQuestion() {
   const done   = trainList.filter(x => answered[x.id] === true).length;
   const pct    = Math.round(done / total * 100);
   $("train-progress-fill").style.width = pct + "%";
-  $("train-progress-label").textContent = t("progressLbl", done, total);
+  $("train-progress-label").textContent = s("progressLbl", done, total);
   $("train-nav-counter").textContent = `${trainIdx + 1} / ${total}`;
 
   // Answers
@@ -288,7 +207,7 @@ function renderTrainQuestion() {
     const btn = document.createElement("button");
     btn.className = "answer-btn";
     btn.dataset.idx = i;
-    btn.innerHTML = `<span class="answer-letter">${letters[i]}</span>${text}`;
+    btn.innerHTML = `<span class="answer-letter">${LETTERS[i]}</span>${text}`;
     btn.addEventListener("click", () => handleTrainAnswer(i));
     answersEl.appendChild(btn);
   });
@@ -354,10 +273,9 @@ function renderTestQuestion() {
     endTest();
     return;
   }
-  const q       = testList[testIdx];
-  const letters = getLetters();
+  const q = testList[testIdx];
 
-  $("test-q-counter").textContent = t("questionOf", testIdx + 1, testList.length);
+  $("test-q-counter").textContent = s("questionOf", testIdx + 1, testList.length);
   $("test-q-text").textContent    = q.question;
   $("test-q-text").className      = "question-text fade-in";
 
@@ -367,7 +285,7 @@ function renderTestQuestion() {
     const btn = document.createElement("button");
     btn.className = "answer-btn";
     btn.dataset.idx = i;
-    btn.innerHTML = `<span class="answer-letter">${letters[i]}</span>${text}`;
+    btn.innerHTML = `<span class="answer-letter">${LETTERS[i]}</span>${text}`;
     btn.addEventListener("click", () => handleTestAnswer(i));
     answersEl.appendChild(btn);
   });
@@ -446,9 +364,9 @@ function endTest() {
   renderCategoryProgress();
 
   $("score-percent").textContent  = pct + "%";
-  $("score-verdict").textContent  = pass ? t("pass") : t("fail");
+  $("score-verdict").textContent  = pass ? s("pass") : s("fail");
   $("score-verdict").className    = "score-verdict " + (pass ? "pass" : "fail");
-  $("score-summary").textContent  = t("scoreSummary", correct, TEST_COUNT);
+  $("score-summary").textContent  = s("scoreSummary", correct, TEST_COUNT);
 
   // Animate ring
   const fillRing = $("score-fill-ring");
@@ -461,7 +379,6 @@ function endTest() {
   const wrong = testResults.filter(r => !r.correct);
   const sect  = $("wrong-answers-section");
   const list  = $("wrong-list");
-  const letters = getLetters();
 
   if (wrong.length === 0) {
     sect.hidden = true;
@@ -474,7 +391,7 @@ function endTest() {
       const correctText = r.question.answers[r.question.correct];
       item.innerHTML = `
         <p class="q-text">${r.question.question}</p>
-        <p class="correct-answer">${t("correctAnswer")} ${letters[r.question.correct]}. ${correctText}</p>
+        <p class="correct-answer">${s("correctAnswer")} ${LETTERS[r.question.correct]}. ${correctText}</p>
         <p class="explanation">${r.question.explanation}</p>`;
       list.appendChild(item);
     });
@@ -485,20 +402,14 @@ function endTest() {
 
 // ─── QUIT MODAL ───────────────────────────────────────────────────────────────
 function showQuitModal() {
-  $("quit-modal").hidden = false;
+  $("quit-modal").classList.add("is-open");
 }
 function hideQuitModal() {
-  $("quit-modal").hidden = true;
+  $("quit-modal").classList.remove("is-open");
 }
 
 // ─── EVENT WIRING ─────────────────────────────────────────────────────────────
 function initEvents() {
-  // Lang toggle
-  $("lang-btn").addEventListener("click", () => {
-    lang = lang === "he" ? "fr" : "he";
-    applyLang();
-  });
-
   // Home → Train
   $("btn-train").addEventListener("click", () => startTraining("all"));
 
@@ -545,11 +456,11 @@ function initEvents() {
 // ─── INIT ──────────────────────────────────────────────────────────────────────
 function init() {
   initEvents();
-  applyLang();
+  refreshCatSelector();
   updateHomeStats();
   renderCategoryProgress();
-  startTraining("all"); // pre-build list
-  showScreen("home");   // but show home first
+  buildTrainList("all");
+  showScreen("home");
 }
 
 document.addEventListener("DOMContentLoaded", init);

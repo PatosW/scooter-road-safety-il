@@ -630,14 +630,17 @@ a { color: var(--orange); }
    MODAL
 ════════════════════════════════════ */
 .modal-overlay {
+  display: none;
   position: fixed;
   inset: 0;
   background: rgba(0,0,0,.55);
-  display: flex;
   align-items: center;
   justify-content: center;
   z-index: 100;
   padding: 16px;
+}
+.modal-overlay.is-open {
+  display: flex;
 }
 .modal-box {
   background: white;
@@ -689,39 +692,3 @@ a { color: var(--orange); }
   .score-percent { font-size: 1.7rem; }
 }
 
-/* ════════════════════════════════════
-   FRENCH / LTR OVERRIDES
-   (applied via JS when lang=fr)
-════════════════════════════════════ */
-html[lang="fr"] {
-  direction: ltr;
-}
-html[lang="fr"] .answer-btn,
-html[lang="fr"] .nav-btn,
-html[lang="fr"] .question-text,
-html[lang="fr"] .section-title,
-html[lang="fr"] .cat-row-header,
-html[lang="fr"] .explanation-box {
-  text-align: left;
-}
-html[lang="fr"] .explanation-box {
-  border-right: none;
-  border-left: 4px solid var(--blue-dark);
-}
-html[lang="fr"] .wrong-item {
-  border-right: none;
-  border-left: 4px solid var(--red-lt);
-}
-html[lang="fr"] .cat-bar-fill {
-  background: linear-gradient(270deg, #e87000, #ff9a2e);
-}
-html[lang="fr"] .progress-fill {
-  float: left;
-}
-html[lang="fr"] .mode-btn {
-  flex-direction: row-reverse;
-  text-align: left;
-}
-html[lang="fr"] .mode-btn > span {
-  align-items: flex-end;
-}
