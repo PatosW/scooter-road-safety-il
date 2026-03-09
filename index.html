@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html dir="rtl" lang="he">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+  <meta name="description" content="אפליקציה חינוכית לבטיחות בדרכים לרוכבי קורקינט חשמלי בישראל – לבני נוער מהרצליה">
+  <meta property="og:title" content="בטיחות בדרכים – קורקינט חשמלי">
+  <meta property="og:description" content="למד את חוקי הדרך לפני שאתה יוצא לרחוב. אפליקציה חינוכית לבני נוער">
+  <meta property="og:image" content="assets/og-image.png">
+  <meta property="og:locale" content="he_IL">
+  <meta name="theme-color" content="#1a3a5c">
+  <link rel="manifest" href="manifest.json">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <title>בטיחות בדרכים – קורקינט חשמלי</title>
+</head>
+<body>
+
+<!-- ═══════════════════════════════════════
+     SCREEN: HOME
+═══════════════════════════════════════ -->
+<div id="screen-home" class="screen active">
+  <header class="app-header">
+    <div class="header-inner">
+      <div class="app-logo">
+        <svg width="36" height="36" viewBox="0 0 36 36" fill="none" aria-hidden="true">
+          <circle cx="18" cy="18" r="18" fill="#e87000"/>
+          <circle cx="10" cy="26" r="4" fill="white" stroke="#1a3a5c" stroke-width="1.5"/>
+          <circle cx="26" cy="26" r="4" fill="white" stroke="#1a3a5c" stroke-width="1.5"/>
+          <path d="M14 26 L18 14 L26 14" stroke="white" stroke-width="2.5" stroke-linecap="round" fill="none"/>
+          <circle cx="26" cy="14" r="2.5" fill="white"/>
+        </svg>
+      </div>
+      <div class="header-title">
+        <h1 id="app-title">בטיחות בדרכים</h1>
+        <span id="app-subtitle">קורקינט חשמלי</span>
+      </div>
+      <button class="lang-toggle" id="lang-btn" aria-label="Toggle language">
+        <span id="lang-label">FR</span>
+      </button>
+    </div>
+  </header>
+
+  <main class="home-main">
+    <p class="home-tagline" id="home-tagline">למד את חוקי הדרך לפני שאתה יוצא לרחוב</p>
+
+    <div class="stats-bar" id="stats-bar">
+      <div class="stat-item">
+        <span class="stat-value" id="stat-tests">0</span>
+        <span class="stat-label" id="stat-tests-label">בחינות</span>
+      </div>
+      <div class="stat-divider"></div>
+      <div class="stat-item">
+        <span class="stat-value" id="stat-best">—</span>
+        <span class="stat-label" id="stat-best-label">שיא</span>
+      </div>
+      <div class="stat-divider"></div>
+      <div class="stat-item">
+        <span class="stat-value" id="stat-last">—</span>
+        <span class="stat-label" id="stat-last-label">אחרון</span>
+      </div>
+    </div>
+
+    <div class="mode-buttons">
+      <button class="mode-btn mode-train" id="btn-train">
+        <svg width="28" height="28" viewBox="0 0 28 28" fill="none" aria-hidden="true">
+          <path d="M14 4 L4 10 L4 22 L14 28 L24 22 L24 10 Z" stroke="currentColor" stroke-width="2" fill="none"/>
+          <path d="M10 14 L13 17 L18 12" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        <span id="btn-train-text">מצב אימון</span>
+        <small id="btn-train-sub">עיון חופשי בשאלות</small>
+      </button>
+      <button class="mode-btn mode-test" id="btn-test">
+        <svg width="28" height="28" viewBox="0 0 28 28" fill="none" aria-hidden="true">
+          <circle cx="14" cy="14" r="10" stroke="currentColor" stroke-width="2" fill="none"/>
+          <path d="M14 8 L14 14 L18 16" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/>
+        </svg>
+        <span id="btn-test-text">מצב בחינה</span>
+        <small id="btn-test-sub">20 שאלות, 30 שניות כל אחת</small>
+      </button>
+    </div>
+
+    <section class="category-progress" id="category-progress">
+      <h2 class="section-title" id="progress-title">התקדמות באימון</h2>
+      <div class="cat-list" id="cat-progress-list"></div>
+    </section>
+  </main>
+</div>
+
+<!-- ═══════════════════════════════════════
+     SCREEN: TRAINING
+═══════════════════════════════════════ -->
+<div id="screen-train" class="screen">
+  <header class="app-header">
+    <div class="header-inner">
+      <button class="back-btn" id="train-back" aria-label="חזור">
+        <svg width="22" height="22" viewBox="0 0 22 22" fill="none" aria-hidden="true">
+          <path d="M14 5 L8 11 L14 17" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </button>
+      <div class="header-title">
+        <h1 id="train-title">מצב אימון</h1>
+      </div>
+      <div class="cat-selector-wrap">
+        <select id="cat-selector" aria-label="בחר קטגוריה"></select>
+      </div>
+    </div>
+  </header>
+
+  <main class="train-main">
+    <div class="progress-bar-wrap">
+      <div class="progress-bar" id="train-progress-bar">
+        <div class="progress-fill" id="train-progress-fill"></div>
+      </div>
+      <span class="progress-label" id="train-progress-label"></span>
+    </div>
+
+    <div class="question-card" id="train-card">
+      <div class="question-number" id="train-q-number"></div>
+      <p class="question-text" id="train-q-text"></p>
+      <div class="answers-list" id="train-answers"></div>
+      <div class="explanation-box" id="train-explanation" hidden>
+        <div class="explanation-inner" id="train-explanation-text"></div>
+      </div>
+    </div>
+
+    <nav class="train-nav">
+      <button class="nav-btn" id="train-prev" aria-label="הקודם">
+        <svg width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true">
+          <path d="M12 4 L6 10 L12 16" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/>
+        </svg>
+        <span id="train-prev-text">הקודם</span>
+      </button>
+      <span class="nav-counter" id="train-nav-counter"></span>
+      <button class="nav-btn nav-next" id="train-next" aria-label="הבא">
+        <span id="train-next-text">הבא</span>
+        <svg width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true">
+          <path d="M8 4 L14 10 L8 16" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/>
+        </svg>
+      </button>
+    </nav>
+  </main>
+</div>
+
+<!-- ═══════════════════════════════════════
+     SCREEN: TEST
+═══════════════════════════════════════ -->
+<div id="screen-test" class="screen">
+  <header class="app-header">
+    <div class="header-inner">
+      <button class="back-btn" id="test-quit" aria-label="יציאה">
+        <svg width="22" height="22" viewBox="0 0 22 22" fill="none" aria-hidden="true">
+          <path d="M6 6 L16 16 M16 6 L6 16" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/>
+        </svg>
+      </button>
+      <div class="test-counter-wrap">
+        <span id="test-q-counter"></span>
+      </div>
+      <div class="timer-wrap">
+        <svg class="timer-svg" viewBox="0 0 44 44" width="44" height="44" aria-hidden="true">
+          <circle class="timer-bg" cx="22" cy="22" r="18"/>
+          <circle class="timer-ring" id="timer-ring" cx="22" cy="22" r="18"/>
+        </svg>
+        <span class="timer-text" id="timer-text">30</span>
+      </div>
+    </div>
+  </header>
+
+  <main class="test-main">
+    <div class="question-card" id="test-card">
+      <p class="question-text" id="test-q-text"></p>
+      <div class="answers-list" id="test-answers"></div>
+    </div>
+  </main>
+</div>
+
+<!-- ═══════════════════════════════════════
+     SCREEN: RESULTS
+═══════════════════════════════════════ -->
+<div id="screen-results" class="screen">
+  <header class="app-header">
+    <div class="header-inner">
+      <div class="header-title">
+        <h1 id="results-title">תוצאות הבחינה</h1>
+      </div>
+    </div>
+  </header>
+
+  <main class="results-main">
+    <div class="score-circle" id="score-circle">
+      <svg viewBox="0 0 120 120" width="140" height="140" aria-hidden="true">
+        <circle class="score-bg-ring" cx="60" cy="60" r="50"/>
+        <circle class="score-fill-ring" id="score-fill-ring" cx="60" cy="60" r="50"/>
+      </svg>
+      <div class="score-inner">
+        <span class="score-percent" id="score-percent"></span>
+        <span class="score-verdict" id="score-verdict"></span>
+      </div>
+    </div>
+
+    <p class="score-summary" id="score-summary"></p>
+
+    <section class="wrong-answers-section" id="wrong-answers-section" hidden>
+      <h2 class="section-title" id="wrong-title">שאלות שטעית</h2>
+      <div class="wrong-list" id="wrong-list"></div>
+    </section>
+
+    <div class="results-actions">
+      <button class="mode-btn mode-test" id="btn-retry">
+        <span id="btn-retry-text">נסה שוב</span>
+      </button>
+      <button class="mode-btn mode-train" id="btn-to-train">
+        <span id="btn-to-train-text">חזור לאימון</span>
+      </button>
+    </div>
+  </main>
+</div>
+
+<!-- Quit confirmation modal -->
+<div class="modal-overlay" id="quit-modal" hidden>
+  <div class="modal-box">
+    <p id="modal-text">לצאת מהבחינה? הניקוד לא יישמר.</p>
+    <div class="modal-actions">
+      <button class="modal-btn modal-cancel" id="modal-cancel">המשך בחינה</button>
+      <button class="modal-btn modal-confirm" id="modal-confirm">יציאה</button>
+    </div>
+  </div>
+</div>
+
+<script src="questions.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
