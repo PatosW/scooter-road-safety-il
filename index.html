@@ -17,6 +17,7 @@
   <title>בטיחות בדרכים – קורקינט חשמלי</title>
 </head>
 <body>
+<div id="app-root">
 
 <!-- ═══════════════════════════════════════
      SCREEN: HOME
@@ -216,6 +217,9 @@
 </div>
 
 <!-- Quit confirmation modal -->
+</div><!-- /#app-root -->
+
+<!-- Modal is a direct child of body so position:fixed is never clipped by overflow:hidden -->
 <div class="modal-overlay" id="quit-modal">
   <div class="modal-box">
     <p id="modal-text">לצאת מהבחינה? הניקוד לא יישמר.</p>

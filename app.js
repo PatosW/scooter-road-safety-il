@@ -168,9 +168,10 @@ function refreshCatSelector() {
 
 function buildTrainList(cat) {
   trainCat  = cat;
-  trainList = cat === "all"
+  const base = cat === "all"
     ? [...QUESTIONS]
     : QUESTIONS.filter(q => q.category === cat);
+  trainList = base.sort(() => Math.random() - 0.5);
   trainIdx  = 0;
 }
 
