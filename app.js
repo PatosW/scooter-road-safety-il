@@ -244,9 +244,9 @@ function handleTrainAnswer(chosen) {
   expText.textContent = q.explanation;
   expBox.hidden = false;
 
-  // Auto-advance after 3s if correct
+  // Auto-advance after 4s if correct
   if (isCorrect && trainIdx < trainList.length - 1) {
-    trainAdvanceTimer = setTimeout(() => advanceTrain(1), 3000);
+    trainAdvanceTimer = setTimeout(() => advanceTrain(1), 4000);
   }
 }
 
